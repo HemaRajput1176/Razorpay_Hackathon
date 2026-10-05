@@ -1,0 +1,109 @@
+version: '3.8'
+
+networks:
+  cybernexus_lab_net:
+    name: cybernexus_lab_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${LAB_NETWORK_SUBNET:-10.240.0.0/16}
+          gateway: 10.240.0.1
+    internal: false # Controlled outbound egress if enabled by lab manager
+
+services:
+  web-01:
+    container_name: cybernexus-lab-web-01
+    image: nginx:alpine
+    networks:
+      cybernexus_lab_net:
+        ipv4_address: 10.240.0.10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "stat", "/etc/nginx/nginx.conf"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  api-01:
+    container_name: cybernexus-lab-api-01
+    image: node:18-alpine
+    command: node -e "require('http').createServer((req,res)=>{res.writeHead(200);res.end(JSON.stringify({status:'ONLINE',service:'API-01'}));}).listen(8080);"
+    networks:
+      cybernexus_lab_net:
+        ipv4_address: 10.240.0.11
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.exit(0)"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  db-01:
+    container_name: cybernexus-lab-db-01
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: cybernexus_lab_db
+      POSTGRES_USER: lab_user
+      POSTGRES_PASSWORD: lab_secure_password_2026
+    networks:
+      cybernexus_lab_net:
+        ipv4_address: 10.240.0.12
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab_user -d cybernexus_lab_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  linux-01:
+    container_name: cybernexus-lab-linux-01
+    image: alpine:latest
+    command: tail -f /dev/null
+    networks:
+      cybernexus_lab_net:
+        ipv4_address: 10.240.0.23
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "ping", "-c", "1", "127.0.0.1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  container-01:
+    container_name: cybernexus-lab-container-01
+    image: alpine:latest
+    command: tail -f /dev/null
+    networks:
+      cybernexus_lab_net:
+        ipv4_address: 10.240.0.30
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "ping", "-c", "1", "127.0.0.1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

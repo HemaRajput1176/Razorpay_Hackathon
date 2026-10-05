@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #030609;
+    --bg-secondary: #070B11;
+    --bg-panel: #0B1118;
+    --bg-panel-elevated: #0F1720;
+    --border-cyber: #17232E;
+    --border-cyber-glow: #00E5FF33;
+    
+    --cyan-primary: #00E5FF;
+    --blue-secondary: #238BFF;
+    --purple-ai: #8B5CF6;
+    
+    --green-success: #22C55E;
+    --amber-warning: #F59E0B;
+    --red-critical: #FF3B30;
+    --red-danger: #FF1744;
+    
+    --text-primary: #E6F1F5;
+    --text-secondary: #7F95A5;
+    --text-muted: #465663;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030609;
+}
+::-webkit-scrollbar-thumb {
+  background: #17232E;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF44;
+}
+
+/* Cyber Grid Background Pattern */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(23, 35, 46, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 35, 46, 0.3) 1px, transparent 1px);
+}
+
+/* Glowing Border Utilities */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+  border-color: rgba(0, 229, 255, 0.6) !important;
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+  border-color: rgba(34, 197, 94, 0.8) !important;
+}
+
+.glow-red {
+  box-shadow: 0 0 15px rgba(255, 59, 48, 0.3);
+  border-color: rgba(255, 59, 48, 0.7) !important;
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.7) !important;
+}
+
+/* CRT Scanline overlay */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 20;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Monospace font utility */
+.font-mono-tech {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', monospace;
+}

@@ -1,0 +1,73 @@
+﻿# ==============================
+# CYBERNEXUS Git Ignore
+# ==============================
+
+# Secrets / Environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Build / Cache
+.cache/
+.vite/
+coverage/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Local secrets/config
+secrets/
+private/
+credentials/

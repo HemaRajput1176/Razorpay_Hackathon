@@ -1,0 +1,94 @@
+name: "NEXORA ENTERPRISE LAB"
+slug: "nexora-enterprise"
+description: "Enterprise multi-tier isolated cyber range laboratory featuring web, API, database, host Linux, and container targets."
+environment: "ISOLATED_CYBER_RANGE"
+network:
+  name: "cybernexus_lab_net"
+  subnet: "10.240.0.0/16"
+  gateway: "10.240.0.1"
+  isolation: "STRICT_PRIVATE_BRIDGE"
+
+resource_limits:
+  max_cpus: "2.0"
+  max_memory: "2048M"
+  max_containers: 5
+
+assets:
+  - id: "AST-LAB-001"
+    name: "WEB-01"
+    hostname: "web-01.lab.local"
+    asset_type: "WEB SERVER"
+    ip_address: "10.240.0.10"
+    container_name: "cybernexus-lab-web-01"
+    os: "Alpine Linux v3.19"
+    role: "Frontend Web Application Gateway"
+    criticality: "HIGH"
+    services:
+      - name: "HTTP"
+        protocol: "TCP"
+        port: 80
+        version: "Nginx 1.25"
+      - name: "HTTPS"
+        protocol: "TCP"
+        port: 443
+        version: "Nginx 1.25 (TLS 1.3)"
+
+  - id: "AST-LAB-002"
+    name: "API-01"
+    hostname: "api-01.lab.local"
+    asset_type: "SERVER/API"
+    ip_address: "10.240.0.11"
+    container_name: "cybernexus-lab-api-01"
+    os: "Alpine Linux v3.19"
+    role: "RESTful Microservice API Backend"
+    criticality: "CRITICAL"
+    services:
+      - name: "API-GATEWAY"
+        protocol: "TCP"
+        port: 8080
+        version: "Node.js REST API v2.1"
+
+  - id: "AST-LAB-003"
+    name: "DB-01"
+    hostname: "db-01.lab.local"
+    asset_type: "DATABASE"
+    ip_address: "10.240.0.12"
+    container_name: "cybernexus-lab-db-01"
+    os: "Alpine Linux v3.19"
+    role: "Relational Database Server"
+    criticality: "CRITICAL"
+    services:
+      - name: "POSTGRESQL"
+        protocol: "TCP"
+        port: 5432
+        version: "PostgreSQL 16.1"
+
+  - id: "AST-LAB-004"
+    name: "LINUX-01"
+    hostname: "linux-01.lab.local"
+    asset_type: "HOST"
+    ip_address: "10.240.0.23"
+    container_name: "cybernexus-lab-linux-01"
+    os: "Ubuntu 22.04 LTS"
+    role: "Internal Enterprise Linux Workstation"
+    criticality: "HIGH"
+    services:
+      - name: "SSH"
+        protocol: "TCP"
+        port: 22
+        version: "OpenSSH 8.9p1"
+
+  - id: "AST-LAB-005"
+    name: "CONTAINER-01"
+    hostname: "container-01.lab.local"
+    asset_type: "DOCKER POD"
+    ip_address: "10.240.0.30"
+    container_name: "cybernexus-lab-container-01"
+    os: "Alpine Linux v3.19"
+    role: "Internal Containerized Worker Microservice"
+    criticality: "MEDIUM"
+    services:
+      - name: "WORKER-SERVICE"
+        protocol: "TCP"
+        port: 9000
+        version: "Go Microservice 1.4"
