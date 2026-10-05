@@ -1,81 +1,65 @@
-# CYBERNEXUS — AI-Powered Autonomous Cyber Defense & Security Validation Platform
+# CYBERNEXUS
 
-> **TAGLINE**: ATTACK. DETECT. INVESTIGATE. RESPOND. VALIDATE.
+## AI-Powered Cyber Risk & Security Operations Platform
 
-CYBERNEXUS is an enterprise-grade, portfolio-level cybersecurity platform designed for high-density operational control centers, threat operations, cyber range labs, and AI-driven defense validation.
+> **From Raw Security Events to Evidence-Backed Risk Decisions**
 
----
+CYBERNEXUS is an AI-powered cybersecurity platform designed to help organizations continuously **detect, investigate, understand, prioritize, respond to, and validate cyber risks** across critical digital infrastructure.
 
-## 🛡️ Key Platform Capability Pillars
-
-1. **Command Center**: Real-time operational security posture (87/100), active telemetry stream, threat distribution, and active incident queue.
-2. **SOC Operations**: Correlated SIEM/EDR alert stream, MTTD/MTTR analytics, and detailed incident drawers with MITRE ATT&CK mapping.
-3. **Controlled Cyber Terminal**: Monospace hacker-style terminal executing safe backend administrative and telemetry queries (`system.status`, `range.status`, `assets.list`, `incidents.list`, `threats.summary`, `ai.status`, `help`).
-4. **Authorized Security Model**: Enforces strict authorized testing against owned lab assets (Cyber Range) and customer approved targets. Zero unauthorized scanning logic.
-5. **NEXUS AI Security Brain**: Multi-agent threat reasoning, confidence scoring, and structured evidence correlation.
+Built for the **Razorpay Hackathon — AI Risk Manager Track**.
 
 ---
 
-## 🎨 Visual Identity & UI Command Center
+## The Problem
 
-- Inspired by NASA mission control + elite SOC + hacker terminal + futuristic AI command center.
-- Controlled dark cyber palette: `#030609` (primary bg), `#070B11` (panel), `#00E5FF` (cyan primary), `#22C55E` (green success / ACCESS GRANTED), `#8B5CF6` (AI purple).
-- JetBrains Mono technical typography, glowing thin borders, CRT scanlines, keyboard command palette (`Ctrl + K`).
+Modern digital businesses generate thousands of security events every day.
 
----
+Authentication failures, suspicious API requests, vulnerabilities, abnormal network activity, IOC matches, configuration changes and security alerts continuously flow into security teams.
 
-## 🚀 Quick Start Guide
+But the biggest problem is not the lack of security data.
 
-### 1. Frontend Setup (React + TypeScript + Vite + Tailwind CSS)
+### The real problem is knowing what actually matters.
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
-The frontend starts at `http://localhost:3000`.
+Security teams need to answer:
 
-### 2. Backend Setup (FastAPI + SQLAlchemy + SQLite/PostgreSQL)
+- Which alert represents a real attack?
+- What asset is at risk?
+- How did the attack reach that asset?
+- Is the affected asset business-critical?
+- What evidence supports the conclusion?
+- What is the potential business impact?
+- What should the security team prioritize?
+- Did the response actually reduce the risk?
 
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-```
-The backend REST API starts at `http://localhost:8000`. API Swagger Docs available at `http://localhost:8000/docs`.
+Traditional security tools often generate more alerts.
+
+**CYBERNEXUS focuses on turning those alerts into decisions.**
 
 ---
 
-## 🧪 Testing & Verification
+# Our Solution
 
-- **Frontend Type Check**: `npm run build` inside `frontend/`
-- **Backend Import & Syntax Check**: `python -m py_compile app/main.py` inside `backend/`
+CYBERNEXUS connects the complete security lifecycle:
 
----
-
-## 📁 Repository Structure
-
-```
-cybersecurity/
-├── backend/
-│   ├── app/
-│   │   ├── api/          # FastAPI Routers (health, auth, dashboard, soc, terminal)
-│   │   ├── config/       # Settings & environment variables
-│   │   ├── database/     # SQLAlchemy engine & session maker
-│   │   ├── models/       # ORM schemas (Users, Assets, Incidents, Alerts, AuditLogs)
-│   │   └── main.py       # FastAPI application & startup seed data loader
-│   ├── .env.example
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── components/   # Common cards, logo, badge, command palette, terminal, boot sequence
-│   │   ├── pages/        # Command Center, SOC Dashboard, Generic Module Placeholder
-│   │   ├── services/     # API service abstraction
-│   │   ├── types/        # TypeScript interfaces
-│   │   ├── App.tsx
-│   │   └── index.css     # Cyber design system & scanlines CSS
-│   ├── package.json
-│   └── vite.config.ts
-├── docs/                 # Architecture, Security Model & UI documentation
-└── README.md
-```
+```text
+Security Activity
+       ↓
+Telemetry
+       ↓
+Detection
+       ↓
+Correlation
+       ↓
+Incident
+       ↓
+AI Investigation
+       ↓
+Attack Path
+       ↓
+Business Risk
+       ↓
+Response
+       ↓
+Retest
+       ↓
+Measured Risk Reduction
